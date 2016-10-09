@@ -1,8 +1,22 @@
 <head>
-  <title>Earnigy</title>
+  <title>Simple meteor angular CRUD</title>
 </head>
 <body>
   <div class="container" ng-controller="CrudCtrl">
-    <h1>Earnigy</h1>
+    <header>
+      <h1>Records ( {{ readRecord() }} )</h1>
+      <form class="new-record" ng-submit="createRecord(newRecord); newRecord='';">
+        <input ng-model="newRecord" type="text" name="text" placeholder="Type to add new record" />
+      </form>
+    </header>
+    <ul>
+      <li ng-repeat="record in table" ng-class="{'checked': record.checked}">
+        <button class="delete" ng-click="deleteRecord(record)">&times;</button>
+        <input type="checkbox" ng-checked="record.checked" ng-click="updateRecord(record)" class="toggle-checked" />
+        <span class="text">
+          {{record.text}}
+        </span>
+      </li>
+    </ul>
   </div>
 </body>
